@@ -5,9 +5,14 @@ const Contact = () => {
             <p style={{ color: 'var(--color-text-muted)', marginBottom: '3rem', maxWidth: '500px', margin: '0 auto 3rem' }}>
                 I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
             </p>
-            <a href="https://www.linkedin.com/in/iqra-khan126/" target="_blank" rel="noopener noreferrer" className="btn">
-                Connect on LinkedIn
-            </a>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                <a href="https://www.linkedin.com/in/iqra-khan126/" target="_blank" rel="noopener noreferrer" className="btn">
+                    Connect on LinkedIn
+                </a>
+                <a href="https://github.com/iqrakhan-0126" target="_blank" rel="noopener noreferrer" className="btn btn-outline">
+                    View GitHub
+                </a>
+            </div>
         </section>
     );
 };
