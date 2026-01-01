@@ -1,4 +1,23 @@
+import { useEffect, useRef } from 'react';
+
 const Experience = () => {
+    const sectionRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        const cards = sectionRef.current.querySelectorAll('.reveal');
+        cards.forEach(card => observer.observe(card));
+
+        return () => cards.forEach(card => observer.unobserve(card));
+    }, []);
+
     const experiences = [
         {
             role: 'Web Developer',
@@ -15,20 +34,17 @@ const Experience = () => {
     ];
 
     return (
-        <section id="experience" className="section container">
-            <h2 className="text-gradient" style={{ marginBottom: '3rem' }}>Experience</h2>
+        <section id="experience" className="section container" ref={sectionRef}>
+            <h2 className="text-gradient reveal" style={{ marginBottom: '3rem' }}>Experience</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 {experiences.map((exp, index) => (
-                    <div key={index} style={{
+                    <div key={index} className="reveal card-hover" style={{
                         background: 'var(--color-bg-secondary)',
                         padding: '2rem',
                         borderRadius: '1rem',
                         borderLeft: '4px solid var(--color-primary)',
-                        transition: 'transform 0.3s ease'
-                    }}
-                        onMouseEnter={(e) => e.currentTarget.style.transform = 'translateX(10px)'}
-                        onMouseLeave={(e) => e.currentTarget.style.transform = 'translateX(0)'}
-                    >
+                        cursor: 'default'
+                    }}>
                         <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{exp.role}</h3>
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', color: 'var(--color-primary)' }}>
                             <span>{exp.company}</span>

@@ -1,4 +1,23 @@
+import { useEffect, useRef } from 'react';
+
 const Projects = () => {
+    const sectionRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        const cards = sectionRef.current.querySelectorAll('.reveal');
+        cards.forEach(card => observer.observe(card));
+
+        return () => cards.forEach(card => observer.unobserve(card));
+    }, []);
+
     const projects = [
         {
             title: 'E-Commerce Dashboard',
@@ -18,22 +37,23 @@ const Projects = () => {
     ];
 
     return (
-        <section id="projects" className="section container">
-            <h2 className="text-gradient" style={{ marginBottom: '3rem' }}>Featured Projects</h2>
+        <section id="projects" className="section container" ref={sectionRef}>
+            <h2 className="text-gradient reveal" style={{ marginBottom: '3rem' }}>Featured Projects</h2>
             <div style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
                 gap: '2rem'
             }}>
                 {projects.map((project, index) => (
-                    <div key={index} style={{
+                    <div key={index} className="reveal card-hover" style={{
                         background: 'var(--color-bg-secondary)',
                         padding: '2rem',
                         borderRadius: '1rem',
                         border: '1px solid rgba(255,255,255,0.05)',
                         display: 'flex',
                         flexDirection: 'column',
-                        justifyContent: 'space-between'
+                        justifyContent: 'space-between',
+                        cursor: 'pointer'
                     }}>
                         <div>
                             <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>{project.title}</h3>
