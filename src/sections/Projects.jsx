@@ -20,19 +20,28 @@ const Projects = () => {
 
     const projects = [
         {
-            title: 'E-Commerce Dashboard',
-            description: 'A comprehensive dashboard for managing online stores, featuring real-time analytics and inventory management.',
-            tags: ['React', 'Chart.js', 'Node.js']
+            title: 'Movie Ticket Pricing',
+            description: 'A dynamic web application for pricing and booking movie tickets.',
+            tags: ['Web App', 'Netlify'],
+            link: 'https://movieticketpricing26.netlify.app'
         },
         {
-            title: 'Portfolio v1',
-            description: 'A personal portfolio website showcasing projects and skills with a focus on minimal design.',
-            tags: ['HTML', 'CSS', 'JavaScript']
+            title: 'StudyNest',
+            description: 'An educational platform for students to organize their study materials.',
+            tags: ['Education', 'React'],
+            link: 'https://studynestik.netlify.app'
         },
         {
-            title: 'Task Management App',
-            description: 'A productivity tool to help teams organize and track tasks efficiently.',
-            tags: ['Vue.js', 'Firebase']
+            title: 'E-Commerce Clothing',
+            description: 'A modern e-commerce site for clothing with product listings and cart functionality.',
+            tags: ['E-Commerce', 'Shopping'],
+            link: 'https://e-commerce-clothing-website126.netlify.app'
+        },
+        {
+            title: 'Coffee Shop',
+            description: 'A delightful landing page for a coffee shop with menu and location details.',
+            tags: ['Landing Page', 'Design'],
+            link: 'https://iscoffeeshop.netlify.app'
         }
     ];
 
@@ -45,16 +54,25 @@ const Projects = () => {
                 gap: '2rem'
             }}>
                 {projects.map((project, index) => (
-                    <div key={index} className="reveal card-hover" style={{
-                        background: 'var(--color-bg-secondary)',
-                        padding: '2rem',
-                        borderRadius: '1rem',
-                        border: '1px solid rgba(255,255,255,0.05)',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
-                        cursor: 'pointer'
-                    }}>
+                    <a
+                        key={index}
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="reveal card-hover"
+                        style={{
+                            background: 'var(--color-bg-secondary)',
+                            padding: '2rem',
+                            borderRadius: '1rem',
+                            border: '1px solid rgba(255,255,255,0.05)',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'space-between',
+                            cursor: 'pointer',
+                            textDecoration: 'none',
+                            color: 'inherit'
+                        }}
+                    >
                         <div>
                             <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>{project.title}</h3>
                             <p style={{ color: 'var(--color-text-muted)', marginBottom: '1.5rem' }}>{project.description}</p>
@@ -72,7 +90,7 @@ const Projects = () => {
                                 </span>
                             ))}
                         </div>
-                    </div>
+                    </a>
                 ))}
             </div>
         </section>
